@@ -75,6 +75,19 @@ public class ArraysCC {
         }
     }
 
+    //******************************************************************************
+    // Pairs in Array
+
+    public static void pairArray(int[] arr){
+
+        for(int i =0; i<arr.length; i++){
+            for(int j =i+1; j<arr.length; j++){
+                System.out.print("("+arr[i]+","+arr[j]+")");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
 
 //******************************************************************************************************
@@ -121,13 +134,21 @@ public class ArraysCC {
 //******************************************************************************************************
         //Reverse an Array
 
+//        int[] arr = {23,3,53,23,35,89,344,45};
+//        reverseArray(arr);
+//
+//        for(int i =0; i<arr.length; i++){
+//            System.out.print(arr[i]+" ");
+//        }
 
-        int[] arr = {23,3,53,23,35,89,344,45};
-        reverseArray(arr);
 
-        for(int i =0; i<arr.length; i++){
-            System.out.print(arr[i]+" ");
-        }
+//******************************************************************************************************
+        //Pairs in Array
+
+        int[] arr = {2,4,5,67,8,3};
+        pairArray(arr);
+
+
 
     }
 }
