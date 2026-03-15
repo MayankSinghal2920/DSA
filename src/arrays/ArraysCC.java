@@ -91,6 +91,95 @@ public class ArraysCC {
         }
     }
 
+    //******************************************************************************
+    // Print Subarrays
+    // Max Subarray Sum
+
+    // (Brute force)
+    public static void printSubarray(int[] arr){
+
+        int start =0;
+        int end = 0;
+        int sum = 0;
+        int minSum = Integer.MAX_VALUE;
+        int maxSum = Integer.MIN_VALUE;
+
+        for(int i = 0; i<arr.length; i++){
+            start = i;
+            for(int j = i; j<arr.length;j++){
+                end = j;
+                System.out.print("[ ");
+                for(int k = start; k<=end; k++){
+                    sum += arr[k];
+                    System.out.print(arr[k]+" ");
+                }
+                System.out.println("] -- Sum : "+ sum);
+                if(sum<minSum){
+                    minSum = sum;
+                }
+                if(sum>maxSum){
+                    maxSum = sum;
+                }
+                sum = 0;
+            }
+            System.out.println();
+        }
+
+        System.out.println("Maximum Sum = "+ maxSum );
+        System.out.println("Minimum Sum = "+ minSum );
+    }
+
+    //******************************************************************************
+    // Max Subarray Sum - Prefix method
+
+    public static void maxSubArray(int[] arr){
+
+        int sum = 0;
+        int maxSum = Integer.MIN_VALUE;
+
+        int[] prefixArr = new int[arr.length];
+        prefixArr[0] = arr[0];
+        for(int i = 1; i<arr.length;i++){
+            prefixArr[i] = prefixArr[i-1] + arr[i];
+        }
+
+        for(int i = 0; i<arr.length; i++){
+            for(int j = i; j<arr.length; j++){
+                sum = (i==0)? prefixArr[j] : prefixArr[j]-prefixArr[i-1];
+
+                if(sum>maxSum){
+                    maxSum = sum;
+                }
+                sum = 0;
+            }
+        }
+        System.out.println("max sum is "+ maxSum);
+    }
+
+    //******************************************************************************
+    // Max Subarray Sum - Kadane's Algorithm
+
+    public static void maxSubArrayKadane(int[] arr){
+        int currSum =0;
+        int maxSum = Integer.MIN_VALUE;
+
+        for(int i =0; i<arr.length; i++){
+
+            if(arr[i]>0){
+                currSum += arr[i];
+            }
+
+            if(currSum>maxSum){
+                maxSum = currSum;
+            }
+
+
+        }
+    }
+
+
+
+
     public static void main(String[] args) {
 
 //******************************************************************************************************
@@ -150,9 +239,20 @@ public class ArraysCC {
 //******************************************************************************************************
         //Pairs in Array
 
-        int[] arr = {2,4,5,67,8,3};
-        pairArray(arr);
+//        int[] arr = {2,4,5,67,8,3};
+//        pairArray(arr);
 
+//******************************************************************************************************
+        //Print Subarrays
+        //Max Subarray Sum
+
+        int[] arr = {2,4,5,67,8,3};
+//        printSubarray(arr);
+//        int n = arr.length;
+//        int totalSubarray = n*(n+1)/2;
+//        System.out.println(totalSubarray);
+
+        maxSubArray(arr);
 
 
 
