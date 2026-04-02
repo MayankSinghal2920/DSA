@@ -159,22 +159,26 @@ public class ArraysCC {
     //******************************************************************************
     // Max Subarray Sum - Kadane's Algorithm
 
-    public static void maxSubArrayKadane(int[] arr){
-        int currSum =0;
-        int maxSum = Integer.MIN_VALUE;
+    public static void maxSubArrayKadane(int[] arr) {
 
-        for(int i =0; i<arr.length; i++){
+        int currSum = arr[0];
+        int maxSum = arr[0];
 
-            if(arr[i]>0){
+        for(int i = 1; i<arr.length; i++){
+
+            if(currSum+ arr[i] < arr[i]){
+                currSum = arr[i];
+            }
+            else{
                 currSum += arr[i];
             }
 
-            if(currSum>maxSum){
+            if(currSum > maxSum){
                 maxSum = currSum;
             }
-
-
         }
+
+        System.out.println(maxSum);
     }
 
 
@@ -247,12 +251,14 @@ public class ArraysCC {
         //Max Subarray Sum
 
         int[] arr = {2,4,5,67,8,3};
+        int[] num = {-1,-2,-3,-4};
 //        printSubarray(arr);
 //        int n = arr.length;
 //        int totalSubarray = n*(n+1)/2;
 //        System.out.println(totalSubarray);
 
-        maxSubArray(arr);
+        maxSubArray(num);
+        maxSubArrayKadane(num);
 
 
 
